@@ -38,26 +38,48 @@ def sitemap():
     return generate_sitemap(app)
 
 @app.route('/people', methods=['GET'])
-def handle_people():
+def handle_hello():
     people_response = requests.get('https://swapi.dev/api/people')
-    results = people_response.json()["results"]
-    new_results = []
-    for i in results:
-        new_results.append((i)["name"])
-    return jsonify(new_results), 200
+    people = people_response.json()["results"]
+    new_people = []
+    for i in people:
+        new_people.append((i)["name"])
+    return jsonify(new_people), 200
 
 
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
+    # response_body = {
+    #     "msg": "Hello, this is your GET /user response "
+    # }
 
-    return jsonify(response_body), 200
+    # return jsonify(response_body), 200
+
 
 @app.route('/vehicles', methods=['GET'])
 def handle_vehicles():
-    vehicles_response = request.get()
+    vehicles_response = requests.get('https://swapi.dev/api/vehicles')
+    vehicles = vehicles_response.json()["results"]
+    new_vehicles = []
+    for i in vehicles:
+        new_vehicles.append((i)["name"])
+    return jsonify(new_vehicles), 200    
 
+@app.route('/planets', methods=['GET'])
+def handle_planets():
+    planets_response = requests.get('https://swapi.dev/api/planets')
+    planets = planets_response.json()["results"]
+    new_planets = []
+    for i in planets:
+        new_planets.append((i)["name"])
+    return jsonify(new_planets), 200
 
+@app.route('/starships', methods=['GET'])
+def handle_starships():
+    starships_response = requests.get('https://swapi.dev/api/starships')
+    starships = starships_response.json()['results']
+    new_starships = []
+    for i in starships:
+        new_starships.append((i)["name"])
+    return jsonify(new_starships), 200
 
 
 # this only runs if `$ python src/app.py` is executed
